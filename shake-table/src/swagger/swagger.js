@@ -10,7 +10,7 @@ const options = {
         host: 'localhost:3000',
         basePath: '/'
     },
-    apis: ['../routes/*.js', '../swagger/*']
+    apis: ['src/routes/*.js', 'src/swagger/*']
 };
 
 const specs = swaggereJsdoc(options);

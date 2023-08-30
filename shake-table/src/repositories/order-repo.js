@@ -11,9 +11,9 @@ exports.findAllOrders = (connection) => {
   });
 };
 
-exports.findOrderById = (connection, orderId) => {
+exports.findOrderById = (connection, earthquake_index) => {
   return new Promise((resolve, reject) => {
-    connection.query(orderQuery.findOrderById(orderId), (err, result) => {
+    connection.query(orderQuery.findOrderById(earthquake_index), (err, result) => {
       if (err) {
         reject(err);
       }

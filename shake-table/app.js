@@ -8,10 +8,8 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 const orderRouter = require("./src/routes/order-route");
-const reviewRouter = require("./src/routes/review-route");
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
-app.use("/orders", orderRouter);
-app.use("/reviews", reviewRouter);
+app.use("/", orderRouter);
 
 
 app.listen(3000, () => console.log("Listening on port 3000"));

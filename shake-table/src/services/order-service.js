@@ -11,11 +11,11 @@ exports.findAllOrders = () => {
   });
 };
 
-exports.findOrderById = (id) => {
+exports.findOrderById = (earthquake_index) => {
   return new Promise(async (resolve, reject) => {
     const connection = getConnection();
 
-    const results = await OrderRepository.findOrderById(connection, id);
+    const results = await OrderRepository.findOrderById(connection, earthquake_index);
     connection.end();
     resolve(results);
   });

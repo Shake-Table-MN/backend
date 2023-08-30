@@ -33,8 +33,8 @@ exports.findAllOrders = async (req, res, next) => {
 };
 
 exports.findOrderById = async (req, res, next) => {
-  const orderId = req.params.orderId;
-  const order = await orderService.findOrderById(orderId);
+  const earthquake_index = req.params.earthquake_index;
+  const order = await orderService.findOrderById(earthquake_index);
 
   if (order && order.length > 0) {
     res.status(httpStatus.OK).send({
