@@ -1,21 +1,21 @@
 const getConnection = require("../database/connection");
-const OrderRepository = require("../repositories/order-repo");
+const OrderRepository = require("../repositories/earthquake-repo");
 
-exports.findAllOrders = () => {
+exports.findAllEarthquake = () => {
   return new Promise(async (resolve, reject) => {
     const connection = getConnection();
 
-    const results = await OrderRepository.findAllOrders(connection);
+    const results = await OrderRepository.findAllEarthquake(connection);
     connection.end();
     resolve(results);
   });
 };
 
-exports.findOrderById = (earthquake_index) => {
+exports.findEarthquakeByEarthquakeIndex = (earthquake_index) => {
   return new Promise(async (resolve, reject) => {
     const connection = getConnection();
 
-    const results = await OrderRepository.findOrderById(connection, earthquake_index);
+    const results = await OrderRepository.findEarthquakeByEarthquakeIndex(connection, earthquake_index);
     connection.end();
     resolve(results);
   });

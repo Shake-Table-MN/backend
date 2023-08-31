@@ -1,27 +1,27 @@
 const express = require("express");
 const router = express.Router();
 
-const OrderController = require("../controllers/order-controller");
+const earthquakeController = require("../controllers/earthquake-controller");
 
 /**
  * @swagger
- * /:
+ * /earthquake:
  *   get:
  *     tags:
- *       - Order
+ *       - earthquakes
  *     description: 모든 지진 조회
  *     responses:
  *       200:
  *         description: 성공
  */
-router.get("/", OrderController.findAllOrders);
+router.get("/", earthquakeController.findAllEarthquake);
 
 /**
  * @swagger
- * /{earthquake_index}:
+ * /earthquake/{earthquake_index}:
  *   get:
  *     tags:
- *       - Order
+ *       - Orderr
  *     description: 특정 지진 조회
  *     parameters:
  *       - name: earthquake_index
@@ -34,10 +34,10 @@ router.get("/", OrderController.findAllOrders);
  *       200:
  *         description: 성공
  */
-router.get("/:earthquake_index", OrderController.findOrderById);
+router.get("/:earthquake_index", earthquakeController.findEarthquakeByEarthquakeIndex);
 
-router.post("/", OrderController.registOrder);
-router.put("/:orderId", OrderController.updateOrder);
-router.delete("/:orderId", OrderController.deleteOrder);
+router.post("/", earthquakeController.registEarthquake);
+router.put("/:earthquake_index", earthquakeController.updateOrder);
+router.delete("/:earthquake_index", earthquakeController.deleteOrder);
 
 module.exports = router;

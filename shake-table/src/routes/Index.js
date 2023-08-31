@@ -1,12 +1,12 @@
 const router = require("express").Router()
-const order = require("./order-route")
+const earthquake = require("./earthquake-route")
 
 /**
  * @swagger
  * tags:
- *   name: Order
+ *   name: earthquake
  *   description: 메뉴 정보 CRUD
  */
-router.use("/", order)
+router.use("/earthquake", earthquake)
 
 module.exports = router

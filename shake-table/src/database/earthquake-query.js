@@ -1,11 +1,11 @@
-exports.findAllOrders = () => {
+exports.findAllEarthquake = () => {
   return `
     SELECT * 
         FROM shaketable
     `;
 };
 
-exports.findOrderById = (earthquake_index) => {
+exports.findEarthquakeByEarthquakeIndex = (earthquake_index) => {
   return `
     SELECT * 
         FROM shaketable
@@ -13,15 +13,21 @@ exports.findOrderById = (earthquake_index) => {
     `;
 };
 
-// exports.registOrder = () => {
-//   return `
-//         INSERT INTO ORDER_TBL (
-//             total_price,
-//             order_date
-//         )
-//         VALUES (?,?)
-//     `;
-// };
+exports.registEarthquake = () => {
+  return `
+        INSERT INTO shaketable (
+          earthquakeIndex,
+          earthquakeScale,
+          countryName,
+          occurLocation,
+          occurDepth,
+          occurTime,
+          latitude,
+          longitude,
+        )
+        VALUES (null,?,?,?,?,?,?,?)
+    `;
+};
 
 // exports.updateOrder = (orderId) => {
 //   return `

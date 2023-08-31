@@ -1,11 +1,10 @@
 const httpStatus = require("http-status");
 
-const orderService = require("../services/order-service");
+const earthquakeService = require("../services/earthquake-service");
+const EarthquakeDTO = require("../dto/earthquake/earthquake-dto");
 
-const OrderDTO = require("../dto/order/order-dto");
-
-exports.findAllOrders = async (req, res, next) => {
-  const results = await orderService.findAllOrders();
+exports.findAllEarthquake = async (req, res, next) => {
+  const results = await earthquakeService.findAllEarthquake();
 
   if (results && results.length > 0) {
     res.status(httpStatus.OK).send({
@@ -23,28 +22,28 @@ exports.findAllOrders = async (req, res, next) => {
       results: [],
       links: [
         {
-          rel: "orderRegist",
+          rel: "EarthQuakeRegist",
           method: "POST",
-          href: "https://api.ohgiraffers.com/api/v1/order/",
+          href: "https://api.shaketable/api/v1/earthquake/",
         },
       ],
     });
   }
 };
 
-exports.findOrderById = async (req, res, next) => {
+exports.findEarthquakeByEarthquakeIndex = async (req, res, next) => {
   const earthquake_index = req.params.earthquake_index;
-  const order = await orderService.findOrderById(earthquake_index);
+  const earthquake = await earthquakeService.findEarthquakeByEarthquakeIndex(earthquake_index);
 
-  if (order && order.length > 0) {
+  if (earthquake && earthquake.length > 0) {
     res.status(httpStatus.OK).send({
       status: httpStatus.OK,
       message: "OK",
-      results: order,
+      results: earthquake,
     });
   }
 
-  if (order && order.length === 0) {
+  if (earthquake && earthquake.length === 0) {
     res.status(httpStatus.NOT_FOUND).send({
       status: httpStatus.NOT_FOUND,
       message: "Not found",
@@ -52,28 +51,28 @@ exports.findOrderById = async (req, res, next) => {
       results: [],
       links: [
         {
-          rel: "orderRegist",
+          rel: "EarthQuakeRegist",
           method: "POST",
-          href: "https://api.ohgiraffers.com/api/v1/order/",
+          href: "https://api.shaketable/api/v1/earthquake/",
         },
       ],
     });
   }
 };
 
-exports.registOrder = async (req, res, next) => {
-  const orderDTO = new OrderDTO(req.body);
-  const order = await orderService.registOrder(orderDTO);
+exports.registEarthquake = async (req, res, next) => {
+  const EarthquakeDTO = new EarthquakeDTO(req.body);
+  const earthquake = await earthquakeService.registEarthquake(EarthquakeDTO);
 
-  if (order && order.length > 0) {
+  if (earthquake && earthquake.length > 0) {
     res.status(httpStatus.CREATED).send({
       status: httpStatus.CREATED,
       message: "OK",
-      results: order,
+      results: earthquake,
     });
   }
 
-  if (order && order.length === 0) {
+  if (earthquake && earthquake.length === 0) {
     res.status(httpStatus.NOT_FOUND).send({
       status: httpStatus.NOT_FOUND,
       message: "Not found",
@@ -81,9 +80,9 @@ exports.registOrder = async (req, res, next) => {
       results: [],
       links: [
         {
-          rel: "orderRegist",
+          rel: "EarthQuakeRegist",
           method: "POST",
-          href: "https://api.ohgiraffers.com/api/v1/order/",
+          href: "https://api.shaketable/api/v1/earthquake/",
         },
       ],
     });
@@ -92,8 +91,8 @@ exports.registOrder = async (req, res, next) => {
 
 exports.updateOrder = async (req, res, next) => {
   const orderId = req.params.orderId;
-  const orderDTO = new OrderDTO(req.body);
-  const order = await orderService.updateOrder(orderId, orderDTO);
+  const orderDTO = new EarthquakeDTO(req.body);
+  const order = await earthquakeService.updateOrder(orderId, orderDTO);
 
   if (order && order.length > 0) {
     res.status(httpStatus.OK).send({
@@ -111,9 +110,9 @@ exports.updateOrder = async (req, res, next) => {
       results: [],
       links: [
         {
-          rel: "orderRegist",
+          rel: "EarthQuakeRegist",
           method: "POST",
-          href: "https://api.ohgiraffers.com/api/v1/order/",
+          href: "https://api.shaketable/api/v1/earthquake/",
         },
       ],
     });
@@ -122,7 +121,7 @@ exports.updateOrder = async (req, res, next) => {
 
 exports.deleteOrder = async (req, res, next) => {
   const orderId = req.params.orderId;
-  const result = await orderService.deleteOrder(orderId);
+  const result = await earthquakeService.deleteOrder(orderId);
   console.log(result);
 
   if (result) {
@@ -139,9 +138,9 @@ exports.deleteOrder = async (req, res, next) => {
       results: [],
       links: [
         {
-          rel: "orderRegist",
+          rel: "EarthQuakeRegist",
           method: "POST",
-          href: "https://api.ohgiraffers.com/api/v1/order/",
+          href: "https://api.shaketable/api/v1/earthquake/",
         },
       ],
     });
