@@ -83,8 +83,46 @@ router.get("/:earthquake_index", earthquakeController.findEarthquakeByEarthquake
  *         description: 잘못된 요청
  */
 router.post("/", earthquakeController.registEarthquake);
+/**
+ * @swagger
+ * /earthquake/{earthquake_index}:
+ *   put:
+ *     tags:
+ *       - earthquake
+ *     description: Update earthquake information by earthquake_index
+ *     parameters:
+ *       - name: earthquake_index
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Earthquake index
+ *       - name: earthquakeData
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             earthquakeScale:
+ *               type: number
+ *             countryName:
+ *               type: string
+ *             occurLocation:
+ *               type: string
+ *             occurDepth:
+ *               type: string
+ *             occurTime:
+ *               type: string
+ *             latitude:
+ *               type: string
+ *             longitude:
+ *               type: string
+ *     responses:
+ *       200:
+ *         description: Success message
+ */
+router.put("/:earthquake_index", earthquakeController.updateEarthquake);
 
-router.put("/:earthquake_index", earthquakeController.updateOrder);
 router.delete("/:earthquake_index", earthquakeController.deleteOrder);
 
 module.exports = router;

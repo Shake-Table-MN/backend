@@ -89,20 +89,20 @@ exports.registEarthquake = async (req, res, next) => {
   }
 };
 
-exports.updateOrder = async (req, res, next) => {
-  const orderId = req.params.orderId;
-  const orderDTO = new EarthquakeDTO(req.body);
-  const order = await earthquakeService.updateOrder(orderId, orderDTO);
+exports.updateEarthquake = async (req, res, next) => {
+  const earthquake_index = req.params.earthquake_index;
+  const earthquakeDTO = new EarthquakeDTO(req.body);
+  const earthquake = await earthquakeService.updateEarthquake(earthquake_index, earthquakeDTO);
 
-  if (order && order.length > 0) {
+  if (earthquake && earthquake.length > 0) {
     res.status(httpStatus.OK).send({
       status: httpStatus.OK,
       message: "OK",
-      results: order,
+      results: earthquake,
     });
   }
 
-  if (order && order.length === 0) {
+  if (earthquake && earthquake.length === 0) {
     res.status(httpStatus.NOT_FOUND).send({
       status: httpStatus.NOT_FOUND,
       message: "Not found",
@@ -110,7 +110,7 @@ exports.updateOrder = async (req, res, next) => {
       results: [],
       links: [
         {
-          rel: "EarthQuakeRegist",
+          rel: "EarthQuakeUpdate",
           method: "POST",
           href: "https://api.shaketable/api/v1/earthquake/",
         },

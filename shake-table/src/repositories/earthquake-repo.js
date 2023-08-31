@@ -45,17 +45,27 @@ exports.registNewEarthquake = (connection, newEartquake) => {
   });
 };
 
-// exports.updateOrder = (connection, orderId, updateOrder) => {
-//   return new Promise((resolve, reject) => {
-//     connection.query(earthquakeQuery.updateOrder(orderId), [updateOrder.totalPrice, updateOrder.orderDate], (err, result) => {
-//       if (err) {
-//         reject(err);
-//       }
-//       console.log("repo result : ", result);
-//       resolve(result);
-//     });
-//   });
-// };
+exports.updateEarthquake = (connection, earthquake_index, updatEarthquake) => {
+  return new Promise((resolve, reject) => {
+    connection.query(earthquakeQuery.updateEarthquake(earthquake_index),
+      [ 
+        updatEarthquake.earthquakeScale, 
+        updatEarthquake.countryName, 
+        updatEarthquake.occurLocation,
+        updatEarthquake.occurDepth, 
+        updatEarthquake.occurTime, 
+        updatEarthquake.latitude, 
+        updatEarthquake.longitude
+      ],
+      (err, result) => {
+        if (err) {
+          reject(err);
+        }
+      console.log("repo result : ", result);
+      resolve(result);
+    });
+  });
+};
 
 // exports.deleteOrder = (connection, orderId) => {
 //   return new Promise((resolve, reject) => {

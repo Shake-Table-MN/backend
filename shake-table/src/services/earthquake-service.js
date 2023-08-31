@@ -44,16 +44,16 @@ exports.registEarthquake = (newEarthquake) => {
   });
 };
 
-exports.updateOrder = (orderId, updateOrder) => {
+exports.updateEarthquake = (earthquake_index, updatEarthquake) => {
   return new Promise(async (resolve, reject) => {
     const connection = getConnection();
     connection.beginTransaction();
 
     try {
-      const result = await OrderRepository.updateOrder(connection, orderId, updateOrder);
+      const result = await EarthquakeRepository.updateEarthquake(connection, earthquake_index, updatEarthquake);
       if (result.changedRows > 0) {
-        const insertedOrder = await OrderRepository.findOrderById(connection, orderId);
-        resolve(insertedOrder);
+        const insertedEarthquake = await EarthquakeRepository.findEarthquakeByEarthquakeIndex(connection, earthquake_index);
+        resolve(insertedEarthquake);
         connection.commit();
         console.log("commit successfully");
       } else {
@@ -78,7 +78,7 @@ exports.deleteOrder = (orderId) => {
     connection.beginTransaction();
 
     try {
-      const result = await OrderRepository.deleteOrder(connection, orderId);
+      const result = await EarthquakeRepository.deleteOrder(connection, orderId);
       if (result.affectedRows > 0) {
         resolve(true);
         connection.commit();

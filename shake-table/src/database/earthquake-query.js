@@ -29,14 +29,19 @@ exports.registEarthquake = () => {
     `;
 };
 
-// exports.updateOrder = (orderId) => {
-//   return `
-//         UPDATE ORDER_TBL
-//         SET total_price =?,
-//             order_date =?
-//         WHERE id =${orderId}
-//     `;
-// };
+exports.updateEarthquake = (earthquake_index) => {
+  return `
+        UPDATE shaketable
+        SET earthquake_scale=?,
+        country_name=?,
+        occur_location=?,
+        occur_depth=?,
+        occur_time=?,
+        latitude=?,
+        longitude=?
+        WHERE earthquake_index =${earthquake_index}
+    `;
+};
 
 // exports.deleteOrder = (orderId) => {
 //   return `
