@@ -10,7 +10,7 @@ class EarthquakeDTO {
 
 
   constructor(data) {
-
+    this.earthquakeIndex = data.earthquakeIndex;
     this.earthquakeScale = data.earthquakeScale;
     this.countryName=data.countryName;
     this.occurLocation=data.occurLocation;

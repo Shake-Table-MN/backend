@@ -1,11 +1,11 @@
 const getConnection = require("../database/connection");
-const OrderRepository = require("../repositories/earthquake-repo");
+const EarthquakeRepository = require("../repositories/earthquake-repo");
 
 exports.findAllEarthquake = () => {
   return new Promise(async (resolve, reject) => {
     const connection = getConnection();
 
-    const results = await OrderRepository.findAllEarthquake(connection);
+    const results = await EarthquakeRepository.findAllEarthquake(connection);
     connection.end();
     resolve(results);
   });
@@ -15,22 +15,22 @@ exports.findEarthquakeByEarthquakeIndex = (earthquake_index) => {
   return new Promise(async (resolve, reject) => {
     const connection = getConnection();
 
-    const results = await OrderRepository.findEarthquakeByEarthquakeIndex(connection, earthquake_index);
+    const results = await EarthquakeRepository.findEarthquakeByEarthquakeIndex(connection, earthquake_index);
     connection.end();
     resolve(results);
   });
 };
 
-exports.registOrder = (newOrder) => {
+exports.registEarthquake = (newEarthquake) => {
   return new Promise(async (resolve, reject) => {
     const connection = getConnection();
     connection.beginTransaction();
 
     try {
-      const result = await OrderRepository.registNewOrder(connection, newOrder);
+      const result = await EarthquakeRepository.registNewEarthquake(connection, newEarthquake);
 
-      const insertedOrder = await OrderRepository.findOrderById(connection, result.insertId);
-      resolve(insertedOrder);
+      const insertEarthquake = await EarthquakeRepository.findEarthquakeByEarthquakeIndex(connection, result.insertId);
+      resolve(insertEarthquake);
       connection.commit();
       console.log("commit successfully");
     } catch (error) {

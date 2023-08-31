@@ -16,16 +16,16 @@ exports.findEarthquakeByEarthquakeIndex = (earthquake_index) => {
 exports.registEarthquake = () => {
   return `
         INSERT INTO shaketable (
-          earthquakeIndex,
-          earthquakeScale,
-          countryName,
-          occurLocation,
-          occurDepth,
-          occurTime,
+          earthquake_index,
+          earthquake_scale,
+          country_name,
+          occur_location,
+          occur_depth,
+          occur_time,
           latitude,
-          longitude,
+          longitude
         )
-        VALUES (null,?,?,?,?,?,?,?)
+        VALUES (?,?,?,?,?,?,?,?)
     `;
 };
 

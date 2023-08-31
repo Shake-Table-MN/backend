@@ -61,14 +61,14 @@ exports.findEarthquakeByEarthquakeIndex = async (req, res, next) => {
 };
 
 exports.registEarthquake = async (req, res, next) => {
-  const EarthquakeDTO = new EarthquakeDTO(req.body);
-  const earthquake = await earthquakeService.registEarthquake(EarthquakeDTO);
+  const EarthquakeDTOS = new EarthquakeDTO(req.body)
+  const earthquake = await earthquakeService.registEarthquake(EarthquakeDTOS);
 
   if (earthquake && earthquake.length > 0) {
     res.status(httpStatus.CREATED).send({
       status: httpStatus.CREATED,
       message: "OK",
-      results: earthquake,
+      results: earthquake
     });
   }
 
@@ -80,7 +80,7 @@ exports.registEarthquake = async (req, res, next) => {
       results: [],
       links: [
         {
-          rel: "EarthQuakeRegist",
+          rel: "EarthquakeRegist",
           method: "POST",
           href: "https://api.shaketable/api/v1/earthquake/",
         },
