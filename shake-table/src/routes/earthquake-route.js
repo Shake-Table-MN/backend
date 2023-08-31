@@ -42,52 +42,40 @@ router.get("/:earthquake_index", earthquakeController.findEarthquakeByEarthquake
  *     tags:
  *       - earthquake
  *     description: 지진 등록
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
  *     parameters:
- *       - name: earthquakeScale
- *         in: path
- *         description: 지진의 규모
+ *       - in: body
+ *         name: body
+ *         description: 지진 데이터
  *         required: true
  *         schema:
- *           type: number
- *       - name: countryName
- *         in: path
- *         description: 지진이 발생한 국가 이름
- *         required: true
- *         schema:
- *           type: string
- *       - name: occurLocation
- *         in: path
- *         description: 지진이 발생한 위치
- *         required: true
- *         schema:
- *           type: string
- *       - name: occurDepth
- *         in: path
- *         description: 지진의 깊이
- *         required: true
- *         schema:
- *           type: number
- *       - name: occurTime
- *         in: path
- *         description: 지진이 발생한 시간
- *         required: true
- *         schema:
- *           type: string
- *           format: date-time
- *       - name: latitude
- *         in: path
- *         description: 지진의 위도
- *         required: true
- *         schema:
- *           type: number
- *           format: float
- *       - name: longitude
- *         in: path
- *         description: 지진의 경도
- *         required: true
- *         schema:
- *           type: number
- *           format: float
+ *           type: object
+ *           properties:
+ *             earthquakeScale:
+ *               type: number
+ *               description: 지진의 진도
+ *               example: 2.5
+ *             countryName:
+ *               type: string 
+ *               description: 지진이 발생한 국가 이름 ex) 인도네시아
+ *             occurLocation:
+ *               type: string 
+ *               description: 지진이 발생한 위치 ex) 인도네시아 마타람 북북동쪽 207km 해역
+ *             occurDepth:
+ *               type: string 
+ *               description: 지진의 깊이 ex) 516km
+ *             occurTime:
+ *               type: string 
+ *               description: 지진이 발생한 시간 ex) 2023/08/29 04:55:42
+ *             latitude:
+ *               type: string 
+ *               description: 지진의 위도 ex) 6.78S
+ *             longitude:
+ *               type: string 
+ *               description: 지진의 경도 ex) 116.57E
  *     responses:
  *       200:
  *         description: 성공
@@ -95,6 +83,7 @@ router.get("/:earthquake_index", earthquakeController.findEarthquakeByEarthquake
  *         description: 잘못된 요청
  */
 router.post("/", earthquakeController.registEarthquake);
+
 router.put("/:earthquake_index", earthquakeController.updateOrder);
 router.delete("/:earthquake_index", earthquakeController.deleteOrder);
 
