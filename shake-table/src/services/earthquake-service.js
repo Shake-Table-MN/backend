@@ -72,13 +72,13 @@ exports.updateEarthquake = (earthquake_index, updatEarthquake) => {
   });
 };
 
-exports.deleteOrder = (orderId) => {
+exports.deleteEarthquake = (earthquake_index) => {
   return new Promise(async (resolve, reject) => {
     const connection = getConnection();
     connection.beginTransaction();
 
     try {
-      const result = await EarthquakeRepository.deleteOrder(connection, orderId);
+      const result = await EarthquakeRepository.deleteEarthquake(connection, earthquake_index);
       if (result.affectedRows > 0) {
         resolve(true);
         connection.commit();

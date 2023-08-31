@@ -110,7 +110,7 @@ exports.updateEarthquake = async (req, res, next) => {
       results: [],
       links: [
         {
-          rel: "EarthQuakeUpdate",
+          rel: "EarthQuakeRegist",
           method: "POST",
           href: "https://api.shaketable/api/v1/earthquake/",
         },
@@ -119,15 +119,14 @@ exports.updateEarthquake = async (req, res, next) => {
   }
 };
 
-exports.deleteOrder = async (req, res, next) => {
-  const orderId = req.params.orderId;
-  const result = await earthquakeService.deleteOrder(orderId);
-  console.log(result);
+exports.deleteEarthquake = async (req, res, next) => {
+  const earthquake_index = req.params.earthquake_index;
+  const result = await earthquakeService.deleteEarthquake(earthquake_index);
 
   if (result) {
     res.status(httpStatus.NO_CONTENT).send({
       status: httpStatus.NO_CONTENT,
-      message: "Deleted Order",
+      message: "Deleted Earthquake",
       results: [],
     });
   } else {

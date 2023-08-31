@@ -41,7 +41,7 @@ router.get("/:earthquake_index", earthquakeController.findEarthquakeByEarthquake
  *   post:
  *     tags:
  *       - earthquake
- *     description: 지진 등록
+ *     description: 특정 지진 등록
  *     consumes:
  *       - application/json
  *     produces:
@@ -89,7 +89,7 @@ router.post("/", earthquakeController.registEarthquake);
  *   put:
  *     tags:
  *       - earthquake
- *     description: Update earthquake information by earthquake_index
+ *     description: 특정 지진 수정
  *     parameters:
  *       - name: earthquake_index
  *         in: path
@@ -122,7 +122,24 @@ router.post("/", earthquakeController.registEarthquake);
  *         description: Success message
  */
 router.put("/:earthquake_index", earthquakeController.updateEarthquake);
-
-router.delete("/:earthquake_index", earthquakeController.deleteOrder);
+/**
+ * @swagger
+ * /earthquake/{earthquake_index}:
+ *   delete:
+ *     tags:
+ *       - earthquake
+ *     description: 특정 지진 삭제
+ *     parameters:
+ *       - name: earthquake_index
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: INTEGER
+ *         description: 관리번호
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
+router.delete("/:earthquake_index", earthquakeController.deleteEarthquake);
 
 module.exports = router;

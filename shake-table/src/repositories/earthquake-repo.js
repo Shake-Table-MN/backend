@@ -67,13 +67,13 @@ exports.updateEarthquake = (connection, earthquake_index, updatEarthquake) => {
   });
 };
 
-// exports.deleteOrder = (connection, orderId) => {
-//   return new Promise((resolve, reject) => {
-//     connection.query(earthquakeQuery.deleteOrder(orderId), (err, result) => {
-//       if (err) {
-//         reject(err);
-//       }
-//       resolve(result);
-//     });
-//   });
-// };
+exports.deleteEarthquake = (connection, earthquake_index) => {
+  return new Promise((resolve, reject) => {
+    connection.query(earthquakeQuery.deleteEarthquake(earthquake_index), (err, result) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(result);
+    });
+  });
+};

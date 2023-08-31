@@ -43,9 +43,9 @@ exports.updateEarthquake = (earthquake_index) => {
     `;
 };
 
-// exports.deleteOrder = (orderId) => {
-//   return `
-//         DELETE FROM ORDER_TBL
-//         WHERE id = ${orderId}
-//     `;
-// };
+exports.deleteEarthquake = (earthquake_index) => {
+  return `
+        DELETE FROM shaketable
+        WHERE earthquake_index = ${earthquake_index}
+    `;
+};
